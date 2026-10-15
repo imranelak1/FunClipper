@@ -102,3 +102,7 @@ Synthetic probing confirmed AMD AMF encoding and GPU resizing on the RX 6600 XT.
 REA is registered with Codex and its skill is installed. After the user restarted Codex, its MCP connection was verified and a public browser scenario was captured through MCP. The investigation also used the actual REA CLI against five public Medal website bundles and the official installer resource table. The installer was not executed, and the installed recorder code was unavailable.
 
 [Findings and complete evidence references](research/medal-investigation.md) distinguish observed client syntax, inferences, and unknowns. [Investigate-Medal.ps1](scripts/Investigate-Medal.ps1) reproduces the public sample or analyzes an explicitly supplied local ASAR/tree. Medal's native capture architecture and performance are not established by that evidence.
+
+## License
+
+[MIT](LICENSE) © 2026 imranelak1.
