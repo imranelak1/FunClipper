@@ -12,6 +12,7 @@ using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 using FunClipper.Core;
 
 namespace FunClipper.Desktop;
@@ -36,6 +37,7 @@ public partial class App : Application
         try
         {
             bool smoke = e.Args.Contains("--smoke");
+            using var gameFixture = smoke && e.Args.Contains("--game-smoke") ? new GameSmokeFixture() : null;
             if (!smoke)
             {
                 _activation = new EventWaitHandle(false, EventResetMode.AutoReset, "Local\\FunClipper.Activate." + Environment.UserName);
@@ -60,6 +62,18 @@ public partial class App : Application
             window.Show();
             if (smoke)
             {
+                if (gameFixture is not null)
+                {
+                    await window.Games.RegisterGameAsync(gameFixture.ExecutablePath, "FunClipper test game");
+                    window.Games.Start();
+                    var detectionWait = Stopwatch.StartNew();
+                    while (!window.Games.Current.RunningGames.Any(game => game.ProcessId == gameFixture.ProcessId))
+                    {
+                        if (detectionWait.Elapsed > TimeSpan.FromSeconds(15)) throw new TimeoutException("The owned game fixture was not detected.");
+                        await Task.Delay(100);
+                    }
+                    window.ApplyGames(window.Games.Current);
+                }
                 var demo = await MediaTools.CreateDemoAsync(window.Recorder.ClipsDirectory);
                 window.AddClip(demo);
                 await Task.Delay(900);
@@ -88,6 +102,13 @@ public partial class App : Application
                 var statusControl = (TextBox)window.FindName("ActivityStatus");
                 await File.WriteAllTextAsync(Path.Combine(review, "native-accessibility.json"), JsonSerializer.Serialize(new { connectionFieldNames = names, activityStatusReadOnly = statusControl.IsReadOnly, activityStatusHasTextPattern = FrameworkElementAutomationPeer.CreatePeerForElement(statusControl)?.GetPattern(PatternInterface.Text) != null }));
                 connection.Close();
+                var games = new GamesWindow(window.Games) { Left = -10000, Top = -10000, WindowStartupLocation = WindowStartupLocation.Manual };
+                games.Show();
+                await Task.Delay(120);
+                RenderWindow(games, Path.Combine(review, "games.png"));
+                games.Width = games.MinWidth; games.Height = games.MinHeight;
+                RenderWindow(games, Path.Combine(review, "games-minimum.png"));
+                games.Close();
                 window.Overlay.Left = -10000; window.Overlay.Top = -10000;
                 window.Overlay.Show();
                 if (window.LastVitals is { } overlayVitals) window.Overlay.UpdateVitals(overlayVitals);
@@ -104,6 +125,7 @@ public partial class App : Application
                 var samples = new List<VitalsSnapshot>();
                 for (int i = 0; i < 6; i++) { await Task.Delay(1000); if (window.LastVitals is { } sample) samples.Add(sample); }
                 await File.WriteAllTextAsync("artifacts/prototype-vitals.json", JsonSerializer.Serialize(new { context = "Offscreen UI open, recorder stopped, synthetic clip loaded; not a gameplay benchmark", samples }, new JsonSerializerOptions { WriteIndented = true }));
+                if (gameFixture is not null) await window.Games.RemoveRegisteredGameAsync(gameFixture.ExecutablePath);
                 await window.ExitAsync();
             }
         }
@@ -117,6 +139,25 @@ public partial class App : Application
     }
 
     [DllImport("dwmapi.dll")] private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attribute, ref int value, int size);
+
+    private sealed class GameSmokeFixture : IDisposable
+    {
+        private readonly Process _process;
+        public string ExecutablePath { get; } = Path.GetFullPath(Path.Combine("tests", "FunClipper.GameChecks", "bin", "Debug", "net10.0-windows", "FunClipper.GameChecks.exe"));
+        public int ProcessId => _process.Id;
+        public GameSmokeFixture()
+        {
+            if (!File.Exists(ExecutablePath)) throw new FileNotFoundException("Build FunClipper.GameChecks before --game-smoke.", ExecutablePath);
+            var start = new ProcessStartInfo(ExecutablePath) { UseShellExecute = false, CreateNoWindow = true };
+            start.ArgumentList.Add("--fixture-child");
+            _process = Process.Start(start) ?? throw new InvalidOperationException("Could not start the owned game fixture.");
+        }
+        public void Dispose()
+        {
+            try { if (!_process.HasExited) _process.Kill(); }
+            finally { _process.Dispose(); }
+        }
+    }
 
     private static void RenderWindow(Window window, string path)
     {

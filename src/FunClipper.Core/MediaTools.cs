@@ -90,7 +90,7 @@ public static class MediaTools
             ct.ThrowIfCancellationRequested();
             File.Move(pending, destination);
             var saved = new ClipInfo(id, destination, DateTimeOffset.Now, info.Duration, clip.Profile)
-            { Encoder = encoder, HasAudio = info.HasAudio, Width = info.Width, Height = info.Height };
+            { Encoder = encoder, HasAudio = info.HasAudio, Width = info.Width, Height = info.Height, GameName = clip.GameName };
             await ClipCatalog.WriteAsync(saved, ct);
             return saved;
         }

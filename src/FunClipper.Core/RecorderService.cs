@@ -273,7 +273,9 @@ public sealed class RecorderService : IAsyncDisposable
         }
     }
 
-    public async Task<ClipInfo> SaveReplayAsync(CancellationToken ct = default)
+    public Task<ClipInfo> SaveReplayAsync(CancellationToken ct = default) => SaveReplayAsync(null, ct);
+
+    public async Task<ClipInfo> SaveReplayAsync(string? gameName, CancellationToken ct = default)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         var session = _session;
@@ -310,7 +312,10 @@ public sealed class RecorderService : IAsyncDisposable
             ct.ThrowIfCancellationRequested();
             File.Move(pending, destination);
             var clip = new ClipInfo(id, destination, DateTimeOffset.Now, info.Duration, session.Profile)
-            { Encoder = session.Encoder.Name, HasAudio = info.HasAudio, Width = info.Width, Height = info.Height };
+            {
+                Encoder = session.Encoder.Name, HasAudio = info.HasAudio, Width = info.Width, Height = info.Height,
+                GameName = string.IsNullOrWhiteSpace(gameName) ? null : gameName.Trim()
+            };
             await ClipCatalog.WriteAsync(clip, ct);
             session.Diagnostics?.Write($"Replay saved; duration={clip.DurationSeconds:0.00}s; size={clip.Width}x{clip.Height}; audio={clip.HasAudio}");
             return clip;

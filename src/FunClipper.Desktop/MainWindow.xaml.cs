@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using FunClipper.Core;
+using FunClipper.Desktop.GameDetection;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
 
@@ -25,6 +26,7 @@ public partial class MainWindow : Window
     public RecorderService Recorder { get; }
     public ShareClient ShareClient { get; }
     public RecordingOverlayWindow Overlay { get; }
+    public GameDetectionService Games { get; }
     private readonly ObservableCollection<ClipRow> _clips = new();
     private readonly VitalsSampler _vitals = new();
     private readonly DispatcherTimer _timer;
@@ -34,6 +36,9 @@ public partial class MainWindow : Window
     private readonly Stopwatch _recordingClock = new();
     private IntPtr _handle;
     private ClipInfo? _latest;
+    private GamesWindow? _gamesWindow;
+    private string? _recordingGameName;
+    private DateTimeOffset _gameClosedAt = DateTimeOffset.MinValue;
     private HwndSource? _source;
     public VitalsSnapshot? LastVitals { get; private set; }
 
@@ -43,11 +48,13 @@ public partial class MainWindow : Window
         _smoke = smoke;
         Recorder = new RecorderService(dataDirectory);
         ShareClient = new ShareClient(dataDirectory);
+        Games = new GameDetectionService(dataDirectory);
         Overlay = new RecordingOverlayWindow(dataDirectory, smoke);
         Overlay.ToggleRecording += ToggleCaptureAsync;
         Overlay.SaveClip += SaveClipAsync;
         Overlay.OpenLibrary += ShowMain;
         Recorder.StatusChanged += OnRecorderStatus;
+        Games.Changed += OnGamesChanged;
         ClipList.ItemsSource = _clips;
         foreach (var clip in Recorder.GetClips().Take(50).Reverse()) AddClip(clip, false);
         _latest = _clips.FirstOrDefault()?.Clip;
@@ -75,7 +82,7 @@ public partial class MainWindow : Window
             _source = HwndSource.FromHwnd(_handle);
             _source?.AddHook(WindowHook);
         };
-        Loaded += (_, _) => { if (!smoke) { Overlay.Show(); Overlay.DockToCorner(); } };
+        Loaded += (_, _) => { if (!smoke) { Games.Start(); Overlay.Show(); Overlay.DockToCorner(); } else ApplyGames(Games.Current); };
     }
 
     public void AddClip(ClipInfo clip, bool latest = true)
@@ -99,6 +106,25 @@ public partial class MainWindow : Window
         SyncOverlay();
     });
 
+    private void OnGamesChanged(GameDetectionSnapshot snapshot) => Dispatcher.BeginInvoke(() => { if (!_exitRequested) ApplyGames(snapshot); });
+
+    internal void ApplyGames(GameDetectionSnapshot snapshot)
+    {
+        var game = snapshot.ActiveGame;
+        string text = game is null ? "No game detected · open a game or add its executable in Games."
+            : $"Game detected · {game.Name}{(game.IsForeground ? "" : " · running in background")}";
+        if (GameStatus.Text != text) GameStatus.Text = text;
+        GameStatus.ToolTip = snapshot.Status;
+        Overlay.UpdateGame(game?.Name, game?.IsForeground ?? false);
+        if (Recorder.IsRecording && game is not null)
+        {
+            _recordingGameName = game.Name;
+            _gameClosedAt = DateTimeOffset.MinValue;
+        }
+        else if (Recorder.IsRecording && _recordingGameName is not null && _gameClosedAt == DateTimeOffset.MinValue)
+            _gameClosedAt = DateTimeOffset.UtcNow;
+    }
+
     private async void Capture_Click(object sender, RoutedEventArgs e)
         => await ToggleCaptureAsync();
 
@@ -114,6 +140,8 @@ public partial class MainWindow : Window
             else
             {
                 _recordingClock.Reset();
+                _recordingGameName = Games.Current.ActiveGame?.Name;
+                _gameClosedAt = DateTimeOffset.MinValue;
                 CaptureStatus.Text = "Checking encoder and starting capture…";
                 await Recorder.StartAsync((CaptureProfile)ProfileChoice.SelectedIndex);
                 _recordingClock.Restart();
@@ -173,7 +201,12 @@ public partial class MainWindow : Window
         try
         {
             ActivityStatus.Text = "Saving recent footage…";
-            var clip = await Recorder.SaveReplayAsync();
+            // Retain the title briefly after game exit while its footage can remain in the replay.
+            // Later desktop-only saves must not inherit an old game's title indefinitely.
+            int replaySeconds = ProfileChoice.SelectedIndex == 0 ? 15 : 30;
+            string? gameName = Games.Current.ActiveGame?.Name ??
+                (_gameClosedAt != DateTimeOffset.MinValue && DateTimeOffset.UtcNow - _gameClosedAt <= TimeSpan.FromSeconds(replaySeconds) ? _recordingGameName : null);
+            var clip = await Recorder.SaveReplayAsync(gameName);
             var history = _vitals.History().Where(sample => sample.At >= clip.CreatedAt.AddSeconds(-clip.DurationSeconds)).ToArray();
             await File.WriteAllTextAsync(clip.FilePath + ".vitals.json", JsonSerializer.Serialize(history));
             AddClip(clip);
@@ -220,6 +253,16 @@ public partial class MainWindow : Window
     }
 
     private void Widget_Click(object sender, RoutedEventArgs e) { Overlay.Show(); Overlay.DockToCorner(); }
+
+    private void Games_Click(object sender, RoutedEventArgs e)
+    {
+        if (_gamesWindow is null)
+        {
+            _gamesWindow = new GamesWindow(Games) { Owner = this };
+            _gamesWindow.Closed += (_, _) => _gamesWindow = null;
+        }
+        _gamesWindow.Show(); _gamesWindow.Activate();
+    }
 
     private void EditClip_Click(object sender, RoutedEventArgs e) { if ((sender as FrameworkElement)?.Tag is ClipRow row) OpenEditor(row.Clip); }
     private async void ShareClip_Click(object sender, RoutedEventArgs e) { if ((sender as FrameworkElement)?.Tag is ClipRow row) await ShareClipAsync(row.Clip); }
@@ -303,6 +346,9 @@ public partial class MainWindow : Window
         _timer.Stop(); UnregisterCaptureHotkey();
         _source?.RemoveHook(WindowHook);
         Recorder.StatusChanged -= OnRecorderStatus;
+        Games.Changed -= OnGamesChanged;
+        _gamesWindow?.Close();
+        await Games.DisposeAsync();
         await Recorder.DisposeAsync();
         Overlay.CloseForExit();
         _vitals.Dispose(); ShareClient.Dispose();
@@ -315,7 +361,7 @@ public partial class MainWindow : Window
 
     public sealed record ClipRow(ClipInfo Clip)
     {
-        public string DisplayName => $"Clip · {Clip.CreatedAt.LocalDateTime:HH:mm:ss}";
+        public string DisplayName => $"{(string.IsNullOrWhiteSpace(Clip.GameName) ? "Clip" : Clip.GameName)} · {Clip.CreatedAt.LocalDateTime:HH:mm:ss}";
         public string Detail => $"{Clip.CreatedAt.LocalDateTime:g} · {Clip.DurationSeconds:F1} seconds";
     }
 }

@@ -84,6 +84,12 @@ public partial class RecordingOverlayWindow : Window
         ClipButton.ToolTip = available ? "Save recent footage without leaving your game" : "F8 is used by another app. Click Save clip or use the tray menu.";
     }
 
+    public void UpdateGame(string? name, bool foreground = false)
+    {
+        GameLabel.Text = string.IsNullOrWhiteSpace(name) ? "No game detected" : $"{name}{(foreground ? "" : " · background")}";
+        GameLabel.ToolTip = string.IsNullOrWhiteSpace(name) ? "Open a game, or add its executable in Games." : name + " · desktop capture on screen 1";
+    }
+
     private async void Record_Click(object sender, RoutedEventArgs e) { if (ToggleRecording != null) await ToggleRecording(); }
     private async void Save_Click(object sender, RoutedEventArgs e) { if (SaveClip != null) await SaveClip(); }
     private void Open_Click(object sender, RoutedEventArgs e) => OpenLibrary?.Invoke();
@@ -91,7 +97,7 @@ public partial class RecordingOverlayWindow : Window
 
     private void ApplyCollapse(bool animate)
     {
-        double targetHeight = _collapsed ? 54 : 178;
+        double targetHeight = _collapsed ? 54 : 200;
         double currentHeight = ActualHeight;
         BeginAnimation(HeightProperty, null);
         Height = targetHeight;

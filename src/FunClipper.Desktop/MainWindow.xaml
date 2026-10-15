@@ -10,6 +10,7 @@
     </Grid.RowDefinitions>
     <DockPanel Margin="0,0,0,20">
       <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+        <Button Content="Games" Click="Games_Click" ToolTip="Detected games and custom game executables" />
         <Button Content="Widget" Click="Widget_Click" ToolTip="Show floating recording controls and PC vitals" />
         <Button Content="Web library" Click="Library_Click" />
         <Button Content="Connection" Click="Connection_Click" Margin="0" />
@@ -32,6 +33,7 @@
             <ComboBoxItem Content="Standard · 1080p / 60 FPS" />
           </ComboBox>
         </DockPanel>
+        <TextBlock x:Name="GameStatus" Text="Looking for running games…" Foreground="{StaticResource Ink}" TextWrapping="Wrap" Margin="0,12,0,0" AutomationProperties.Name="Detected game" AutomationProperties.LiveSetting="Polite" />
         <TextBlock x:Name="CaptureStatus" Text="Desktop replay · screen 1 · recording starts when you choose Start capture." Foreground="{StaticResource SecondaryInk}" TextWrapping="Wrap" Margin="0,14,0,0" />
       </StackPanel>
     </Border>

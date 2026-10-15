@@ -1,7 +1,7 @@
 <Window x:Class="FunClipper.Desktop.RecordingOverlayWindow" Style="{StaticResource {x:Type Window}}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="FunClipper recording widget" Width="350" Height="178"
+        Title="FunClipper recording widget" Width="350" Height="200"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ResizeMode="NoResize" Topmost="True" ShowInTaskbar="False" ShowActivated="False"
         WindowStartupLocation="Manual" Closing="Overlay_Closing">
@@ -25,19 +25,20 @@
         </Grid>
       </DockPanel>
       <Grid x:Name="ExpandedContent" Grid.Row="1" Margin="0,10,0,0">
-        <Grid.RowDefinitions><RowDefinition Height="44" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-        <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="22" /><RowDefinition Height="44" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+        <TextBlock x:Name="GameLabel" Text="Looking for games…" FontSize="11" Foreground="#C3C9D5" TextTrimming="CharacterEllipsis" AutomationProperties.Name="Detected game" />
+        <Grid Grid.Row="1">
           <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /><ColumnDefinition Width="1.2*" /></Grid.ColumnDefinitions>
           <StackPanel><TextBlock Text="CPU" FontSize="10" Foreground="#A6ADBD" /><TextBlock x:Name="CpuValue" Text="—" FontSize="18" FontWeight="SemiBold" Margin="0,3,0,0" /></StackPanel>
           <StackPanel Grid.Column="1"><TextBlock Text="GPU" FontSize="10" Foreground="#A6ADBD" /><TextBlock x:Name="GpuValue" Text="—" FontSize="18" FontWeight="SemiBold" Margin="0,3,0,0" /></StackPanel>
           <StackPanel Grid.Column="2"><TextBlock Text="RAM" FontSize="10" Foreground="#A6ADBD" /><TextBlock x:Name="RamValue" Text="—" FontSize="15" FontWeight="SemiBold" Margin="0,5,0,0" /></StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Margin="0,6,0,0">
+        <Grid Grid.Row="2" Margin="0,6,0,0">
           <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
           <TextBlock x:Name="BufferLabel" Text="Replay buffer off" Foreground="#A6ADBD" FontSize="11" VerticalAlignment="Center" />
           <TextBlock x:Name="MemoryLabel" Grid.Column="1" Foreground="#A6ADBD" FontSize="10" VerticalAlignment="Center" />
         </Grid>
-        <Grid Grid.Row="2" Margin="0,10,0,0">
+        <Grid Grid.Row="3" Margin="0,10,0,0">
           <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
           <Button x:Name="RecordButton" Content="Start capture" Click="Record_Click" MinHeight="30" Padding="10,5" FontSize="12" Style="{StaticResource Primary}" />
           <Button x:Name="ClipButton" Grid.Column="1" Content="Save clip · F8" Click="Save_Click" IsEnabled="False" MinHeight="30" Padding="10,5" FontSize="12" Margin="0" ToolTip="Save the last 15 or 30 seconds without leaving your game" />

@@ -35,6 +35,10 @@ The final controlled live test used an app-owned moving fullscreen pattern at 12
 
 This establishes a short recorder-flow check on this PC. It does not measure a game's FPS, long-session drift, actual sound-device latency or low-end compatibility. The floating widget is a normal topmost desktop window; exclusive fullscreen can cover it. The native runtime check confirmed that this Windows version accepts capture exclusion and showing the widget does not activate it.
 
+## Game detection cost
+
+Game detection scans native process identities every 2.5 seconds on a worker task. It requests only limited image-path/creation-time information, caches process metadata and classifications, prunes exited processes, and bounds caches to 8,192 entries. Local Steam/Epic install manifests refresh at most every five minutes unless the user chooses Refresh. There is no per-frame scan, process-module inspection, injection, elevation or network catalog request. This design keeps work bounded; it is not a measured gameplay-overhead or low-end compatibility claim.
+
 ## Acceptance measurements
 
 Use the same game scene, settings, resolution, FPS cap, driver, and recording profile for each run. Compare recording off, FunClipper on, and Medal on. Keep the performance telemetry collection identical across comparisons.

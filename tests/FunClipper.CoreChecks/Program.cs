@@ -13,6 +13,13 @@ Directory.CreateDirectory(workspace);
 var passed = 0;
 try
 {
+    await Check("game labels survive replay saves, catalog reloads, legacy metadata, and trims", () => CheckGameMetadataAsync(workspace));
+    if (args.Contains("--metadata"))
+    {
+        Console.WriteLine($"PASS: {passed} metadata check. Only generated video was used; no screen or real audio capture was started.");
+        return;
+    }
+
     await Check("synthetic demo, media metadata, and persistent catalog", async () =>
     {
         await using var recorder = new RecorderService(Path.Combine(workspace, "library"));
@@ -340,4 +347,66 @@ static async Task Throws<T>(Func<Task> action) where T : Exception
     try { await action(); }
     catch (T) { return; }
     throw new InvalidOperationException($"Expected {typeof(T).Name}.");
+}
+
+static async Task CheckGameMetadataAsync(string workspace)
+{
+    var root = Path.Combine(workspace, "game-metadata");
+    await using var recorder = new RecorderService(root);
+    var legacy = await MediaTools.CreateDemoAsync(recorder.ClipsDirectory);
+    Assert(legacy.GameName is null, "A clip without game context must have no game label.");
+    // An actual pre-feature sidecar has no GameName property at all.
+    var legacyJson = System.Text.Json.Nodes.JsonNode.Parse(System.Text.Json.JsonSerializer.Serialize(legacy))!.AsObject();
+    legacyJson.Remove(nameof(ClipInfo.GameName));
+    await File.WriteAllTextAsync(Path.ChangeExtension(legacy.FilePath, ".json"), legacyJson.ToJsonString());
+    Assert(recorder.GetClips().Single().GameName is null, "Old catalog sidecars must load with a null game label.");
+
+    // Install a synthetic segmented-video session, as in the lifecycle check below.
+    // Exercise the production save API without starting ddagrab or system audio.
+    const System.Reflection.BindingFlags members = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public;
+    var sessionType = typeof(RecorderService).GetNestedType("CaptureSession", System.Reflection.BindingFlags.NonPublic)!;
+    var directory = Path.Combine(root, "replay", Guid.NewGuid().ToString("N"));
+    Directory.CreateDirectory(directory);
+    using var child = ProcessRunner.Create(MediaTools.FindFfmpeg(),
+        ["-hide_banner", "-loglevel", "error", "-y", "-re", "-f", "lavfi", "-i", "testsrc2=size=320x180:rate=30",
+         "-t", "60", "-c:v", "libx264", "-threads", "2", "-preset", "ultrafast", "-pix_fmt", "yuv420p", "-g", "30",
+         "-bf", "0", "-sc_threshold", "0", "-an", "-f", "segment", "-segment_time", "1", "-reset_timestamps", "1",
+         "-segment_list", Path.Combine(directory, "segments.csv"), "-segment_list_type", "csv", Path.Combine(directory, "segment-%08d.ts")], stdin: true);
+    child.Start();
+    var stdout = ProcessRunner.DrainAsync(child.StandardOutput);
+    var stderr = ProcessRunner.DrainAsync(child.StandardError);
+    try
+    {
+        var session = Activator.CreateInstance(sessionType, members, null,
+            [child, directory, CaptureProfile.Minimum, ProfileSettings.For(CaptureProfile.Minimum), new EncoderConfiguration("libx264", false), null, "Generated video only"], null)!;
+        sessionType.GetProperty("Started", members)!.SetValue(session, true);
+        sessionType.GetProperty("Job", members)!.SetValue(session, WindowsProcessJob.Attach(child));
+        sessionType.GetProperty("Progress", members)!.SetValue(session, stdout);
+        sessionType.GetProperty("Errors", members)!.SetValue(session, stderr);
+        typeof(RecorderService).GetField("_session", members)!.SetValue(recorder, session);
+        var monitor = (Task)typeof(RecorderService).GetMethod("MonitorAsync", members)!.Invoke(recorder, [session])!;
+        sessionType.GetProperty("Monitor", members)!.SetValue(session, monitor);
+        using var deadline = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+        while (!recorder.IsReplayReady) await Task.Delay(50, deadline.Token);
+
+        var saved = await recorder.SaveReplayAsync("  Counter-Strike 2  ", deadline.Token);
+        Assert(saved.GameName == "Counter-Strike 2", "The game-aware save API must persist a trimmed descriptive label.");
+        Assert(recorder.GetClips().Single(clip => clip.Id == saved.Id).GameName == saved.GameName,
+            "The game label must survive a catalog reload.");
+        Assert(recorder.IsRecording, "Adding game metadata must not stop the recording session.");
+        var trimmed = await MediaTools.TrimAsync(saved, 0.1, 0.6, true, recorder.ClipsDirectory, deadline.Token);
+        Assert(trimmed.GameName == saved.GameName && recorder.GetClips().Single(clip => clip.Id == trimmed.Id).GameName == saved.GameName,
+            "Trim exports and their sidecars must preserve the source game label.");
+        Assert(!Directory.EnumerateFiles(recorder.ClipsDirectory, "*.tmp").Any(), "Atomic metadata saves must leave no temporary sidecars.");
+        await recorder.StopAsync();
+        // Keep the original CancellationToken overload source-compatible.
+        Func<CancellationToken, Task<ClipInfo>> originalSave = recorder.SaveReplayAsync;
+        await Throws<InvalidOperationException>(() => originalSave(CancellationToken.None));
+    }
+    finally
+    {
+        await recorder.StopAsync();
+        ProcessRunner.Kill(child);
+        await Task.WhenAll(stdout, stderr);
+    }
 }

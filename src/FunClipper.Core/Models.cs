@@ -12,6 +12,7 @@ public record ClipInfo(string Id, string FilePath, DateTimeOffset CreatedAt,
     public bool HasAudio { get; init; }
     public int Width { get; init; }
     public int Height { get; init; }
+    public string? GameName { get; init; }
 }
 
 internal record ProfileSettings(int Width, int Height, int FrameRate, int ReplaySeconds, string Bitrate)

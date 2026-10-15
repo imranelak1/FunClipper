@@ -10,7 +10,7 @@ OWN-WORLD: Requested reference update: charcoal surfaces, pale violet actions, c
 
 STORY: See capture status, choose a quality profile, start intentionally, save without losing game focus, then edit or share.
 
-FIRST VIEWPORT: Main header, capture/profile controls, real vitals and recent clips. A separate small semi-transparent topmost corner widget shows record state, elapsed time, CPU/GPU/RAM, replay readiness and direct controls. The editor remains media-led; the companion web uses matching dark rows and a responsive player.
+FIRST VIEWPORT: Main header with Games manager, capture/profile controls, detected running game, real vitals and recent clips. A separate small semi-transparent topmost corner widget shows record state, elapsed time, detected title, CPU/GPU/RAM, replay readiness and direct controls. The Games window lists detected titles and user-added executables. The editor remains media-led; the companion web uses matching dark rows and a responsive player. Detection is local and recording remains explicit desktop capture.
 
 FORM: Compact utility; directly specified task flow, no concept seed needed.
 

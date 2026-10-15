@@ -19,6 +19,8 @@ colors:
   control-hover: "#2c313d"
   control-hover-border: "#7a8499"
   native-field: "#16191f"
+  native-selected: "#2f293d"
+  widget-detail: "#c3c9d5"
   native-player: "#090b0f"
   web-player: "#090a0d"
   overlay-border: "rgba(83, 91, 109, 0.396078)"
@@ -36,6 +38,10 @@ typography:
     fontFamily: "Bahnschrift"
     fontSize: "18px"
     fontWeight: 600
+  native-subsection:
+    fontFamily: "Bahnschrift"
+    fontSize: "16px"
+    fontWeight: 600
   native-body:
     fontFamily: "Bahnschrift"
     fontSize: "14px"
@@ -52,6 +58,9 @@ typography:
   widget-label:
     fontFamily: "Bahnschrift"
     fontSize: "10px"
+  widget-game:
+    fontFamily: "Bahnschrift"
+    fontSize: "11px"
   widget-buffer:
     fontFamily: "Bahnschrift"
     fontSize: "11px"
@@ -129,6 +138,31 @@ components:
     textColor: "{colors.text}"
     typography: "{typography.native-body}"
     padding: "8px"
+  native-games-manager:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.text}"
+    typography: "{typography.native-body}"
+    padding: "24px"
+    width: "620px"
+    height: "580px"
+  native-games-panel:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text}"
+    typography: "{typography.native-body}"
+  native-game-row:
+    backgroundColor: "transparent"
+    textColor: "{colors.text}"
+    typography: "{typography.native-body}"
+    padding: "9px 12px"
+  native-game-row-selected:
+    backgroundColor: "{colors.native-selected}"
+    textColor: "{colors.text}"
+  native-game-status:
+    textColor: "{colors.text}"
+    typography: "{typography.native-body}"
+  widget-game-status:
+    textColor: "{colors.widget-detail}"
+    typography: "{typography.widget-game}"
   web-button-primary:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.accent-ink}"
@@ -191,6 +225,10 @@ components:
     rounded: "{rounded.widget}"
     padding: "12px 14px"
     width: "350px"
+  floating-widget-expanded:
+    height: "200px"
+  floating-widget-collapsed:
+    height: "54px"
 ---
 # Design System: FunClipper
 
@@ -198,11 +236,11 @@ components:
 
 **Creative North Star: "The compact recording dock"**
 
-FunClipper uses charcoal surfaces, pale violet actions, bright readable text and compact controls. Media and recent clips lead the main windows; the floating native widget groups recording state, real readings and immediate capture/save actions into a small corner surface. The web companion carries the same palette with plain HTML, CSS and SVG icons.
+FunClipper uses charcoal surfaces, pale violet actions, bright readable text and compact controls. Media and recent clips lead the main windows; the floating native widget groups recording state, detected-game context, real readings and immediate capture/save actions into a small corner surface. The web companion carries the same palette with plain HTML, CSS and SVG icons.
 
 The requested references are adapted as original native and DOM patterns: Vengeance's glass dock informs the translucent shell and grouped actions; Skiper informs compact expansion and stable reading regions; Animmaster informs short local transitions. No library source was copied and no paid component code was used. The Windows app embeds no browser runtime for these patterns. The built widget uses alpha transparency without background blur.
 
-This document records the October 15 source and reviewed native/v2 web captures. The [October 15 finish verdict](.impeccable/review/v2-verdict.md) clears the local UI, including the resolved opacity and hotkey findings. This remains a local prototype: public hosting, game FPS/temperature integrations, exclusive-fullscreen widget compatibility and gameplay or low-end performance guarantees are not established.
+This document records the October 15 dark utility and its automatic game detection UI. The [dark UI finish verdict](.impeccable/review/v2-verdict.md) covers the base interface; the [game detection finish review](.impeccable/review/game-detection-verdict.md) clears the Games manager, detected-game labels and taller widget using an owned test fixture. This remains a local prototype: public hosting, game FPS/temperature integrations, exclusive-fullscreen widget compatibility, commercial-game compatibility and gameplay or low-end performance guarantees are not established.
 
 **Key Characteristics:**
 
@@ -210,6 +248,7 @@ This document records the October 15 source and reviewed native/v2 web captures.
 - Compact grouped recording controls and stable-width reading regions.
 - A translucent corner widget with opaque text and controls.
 - Actual media, measured vitals and explicit loading, readiness and recovery states.
+- Local game context presented as text while capture remains opt-in.
 
 ## Colors
 
@@ -228,6 +267,7 @@ The frontmatter owns the implemented color values. Shared native and web roles n
 - **Panel Line** (`border`) separates regions. **Control Line** (`control-border`) gives browser buttons and fields stronger boundaries.
 - **Hovered Control** and **Hovered Control Line** (`control-hover`, `control-hover-border`): browser secondary hover feedback.
 - **Native Field**, **Native Player Black** and **Web Player Black**: the existing platform-specific field fill and dark media letterboxing.
+- **Native Selected Row** (`native-selected`): violet-tinted selection shared by clip and game lists. **Widget Detail Ink** (`widget-detail`): elapsed time and detected-game text above the widget readings.
 - **Widget Background** and **Widget Edge** (`overlay-background`, `overlay-border`): the default rendered native shell. The background token reflects the nominal 85% setting after the source's 8-bit alpha conversion. The edge translates WPF ARGB `#65535B6D` into CSS RGBA for portability.
 
 ### Functional feedback
@@ -248,9 +288,9 @@ The frontmatter owns the implemented color values. Shared native and web roles n
 
 ### Hierarchy
 
-- **Native display/title/section:** main app title, editor title and Recent clips. The connection title remains a source-local (21-unit) semibold variation.
+- **Native display/title/section:** main app and Games manager titles, editor title and Recent clips. The connection title remains a source-local (21-unit) semibold variation. Games manager group headings use the smaller subsection role.
 - **Native body/label/measurement:** controls and ordinary text; metadata and status; aligned vitals/time values.
-- **Widget:** CPU/GPU values use the reading role; RAM is a local (15-unit) semibold variation. Status, elapsed timer and action text are (12 units); the buffer line uses the buffer role, and CPU/GPU/RAM captions plus GPU-memory text use the label role. Captions are literal metric abbreviations, not decorative uppercase headings.
+- **Widget:** CPU/GPU values use the reading role; RAM is a local (15-unit) semibold variation. Status, elapsed timer and action text are (12 units); the detected-game line uses the game role, the buffer line uses the buffer role, and CPU/GPU/RAM captions plus GPU-memory text use the label role. Captions are literal metric abbreviations, not decorative uppercase headings.
 - **Web title/section/brand:** page/clip headings, form/empty-state sections and the header brand. At the mobile breakpoint the title becomes (1.375rem), retaining its existing weight and tracking.
 - **Web body/button/label/meta:** body establishes the (16px) root scale; primary buttons additionally use (600) weight; field labels are semibold. Metadata becomes (0.75rem) with (1.6) line height on mobile. Explanatory connection/empty-state paragraphs remain (0.9375rem).
 
@@ -260,10 +300,11 @@ Use sentence case for actions and explanatory copy. Preserve MP4, CPU, GPU, RAM,
 
 Native dimensions are WPF device-independent units; browser dimensions are CSS pixels. Compact internal spacing and larger outer margins define the rhythm.
 
-- **Main window:** initial size (850 × 660), minimum (730 × 520), outer margin (24). Automatic header/capture/vitals/footer rows surround a star-sized recent-clip list. The capture panel has (18) padding and lower spacing. The profile selector remains (222) wide. Widget, Web library and Connection actions sit at the upper right.
+- **Main window:** initial size (850 × 660), minimum (730 × 520), outer margin (24). Automatic header/capture/vitals/footer rows surround a star-sized recent-clip list. The capture panel has (18) padding and lower spacing. The profile selector remains (222) wide. Games, Widget, Web library and Connection actions sit at the upper right. Detected-game status wraps below the profile/action row, above the capture disclosure.
 - **Editor:** initial size (760 × 690), minimum (600 × 560), outer margin (24). The star-sized player dominates; Start/End rows use columns (56 / remaining / 76), followed by playback, mute, history and save/share controls.
 - **Connection:** fixed (500 × 350), centered on its owner, outer margin (24), stacked labels/fields and a right-aligned Save connection action.
-- **Widget:** fixed width (350), expanded height (178), collapsed height (54). The shell padding is (14 horizontal / 12 vertical); a (28)-high header contains state, timer and utility actions. Expanded metrics use (1 / 1 / 1.2) grid proportions; buffer/GPU-memory text and two equal-width action regions follow.
+- **Games manager:** initial size (620 × 580), minimum (540 × 480), centered on its owner, outer margin (24). The optional game-name field and Add game executable… action precede Running games. Running and custom lists each occupy a star-sized region, separated by Your added games; a wrapping status footer follows. Labels and actions use the existing native spacing rather than a new navigation shell.
+- **Widget:** fixed width (350), expanded height (200), collapsed height (54). The shell padding is (14 horizontal / 12 vertical); a (28)-high header contains state, timer and utility actions. A (22)-high detected-game row appears above the (44)-high metric region. Expanded metrics use (1 / 1 / 1.2) grid proportions; buffer/GPU-memory text and two equal-width action regions follow.
 - **Widget position:** defaults to bottom right and docks to any of four corners with a (20)-unit work-area inset. Drag the header to snap to the nearest corner on the window's current monitor. Right-click offers corner, opacity and Hide widget commands. Corner, opacity and collapsed state persist locally. Collapse/expand re-docks after its height transition.
 - **Web frame:** header minimum height (64px), padding (10px 28px), gap (20px). Main content is centered at maximum width (1080px), including padding (32px 24px); viewer maximum width is (1128px).
 - **Web library/forms:** rows have (16px) gaps and vertical padding. Media previews are (144px) wide at (16:9). Upload fields use a (1.2fr / 1fr) grid with (24px) gap. Connection is a bordered surface of maximum width (600px) with (24px) padding; upload padding is (20px).
@@ -286,7 +327,7 @@ Controls are compact rounded rectangles. Native custom buttons and combo chrome 
 
 The native empty-state glyph sits in a source-local (48 × 48) tonal square with (10)-unit corners. This is a functional empty-state marker, not a general badge pattern. Web notices are unboxed text with a bottom divider. No pills, avatars, decorative chips or social-card system is implemented.
 
-Most borders are (1px). Native focused buttons use a (2-unit) violet border; web focus uses a separate outline. Native list-row hover and selection use existing charcoal/violet-tinted fills; selection is not inferred from button styling.
+Most borders are (1px). Native focused buttons use a (2-unit) violet border; web focus uses a separate outline. Native clip-row hover and list selection use existing charcoal/violet-tinted fills; selection is not inferred from button styling. Games manager lists keep square boundaries and row corners; their rows have selection and keyboard-focus treatments, with no extra hover fill.
 
 ## Components
 
@@ -309,25 +350,35 @@ Server URL and Access key have programmatic names; connection validation is a po
 
 ### Panels, navigation and icons
 
-Functional panels use tonal fills and fine strokes without shadows or card-hover motion. Main/connection/editor windows retain normal native chrome; only the widget is borderless. Browser navigation is a single header with brand, scope divider and Disconnect library or Clip library at the far side. Skip links become visible on focus. No sidebar, tabs, active-route pill or feed exists.
+Functional panels use tonal fills and fine strokes without shadows or card-hover motion. Main/Games/connection/editor windows retain normal native chrome; only the widget is borderless. The main Games button opens one reusable owner-centered manager window. Browser navigation is a single header with brand, scope divider and Disconnect library or Clip library at the far side. Skip links become visible on focus. No sidebar, tabs, active-route pill or feed exists.
 
 Browser icons are original local SVG symbols, generally (17px) with rounded strokes (1.7px); the brand icon is (22px). Native row, empty-state and widget glyphs are local WPF vector paths. Keep labels alongside action icons; icon-only widget controls retain accessible names/tooltips. No library icon runtime or downloaded font is required.
 
 ### Clip rows and media
 
-Native rows show a (72 × 44) play tile, clip name, smaller details and Edit/Share. That native tile is an action marker, not a decoded thumbnail. Native rows use padding (14 horizontal / 8 vertical), a small internal separator, hover fill `#242831`, selected fill `#2f293d`, and violet keyboard focus. Long native titles use ellipsis.
+Native rows show a (72 × 44) play tile, clip name, smaller details and Edit/Share. That native tile is an action marker, not a decoded thumbnail. Native rows use padding (14 horizontal / 8 vertical), a small internal separator, hover fill `#242831`, selected fill `native-selected`, and violet keyboard focus. Long native titles use ellipsis. A saved GameName replaces the generic Clip prefix when available; absent game metadata retains the generic label. Trimming preserves the stored GameName.
 
 Browser rows show actual video-frame previews when media loads; a vector video icon remains as fallback. Muted inline preview videos load near the viewport, do not autoplay, and are hidden from accessibility navigation inside a labeled Watch link. Long browser titles and messages wrap. Web viewer playback uses native video controls with Download MP4 recovery. The web uploads finished MP4s; trimming/muting remains in the desktop editor.
 
 ### Floating recording widget
 
-The widget groups real recording state, elapsed time, CPU/GPU/RAM, optional dedicated GPU-memory usage, replay buffer state and capture/save controls. Fixed columns and monospaced elapsed time keep changing readings from shifting adjacent controls. A small colored dot accompanies a text state rather than serving as the only status.
+The widget groups real recording state, elapsed time, detected-game text, CPU/GPU/RAM, optional dedicated GPU-memory usage, replay buffer state and capture/save controls. The game line sits above the vitals and uses ellipsis with a full-name tooltip; the collapsed header keeps recording state and elapsed time, without the game line. Fixed columns and monospaced elapsed time keep changing readings from shifting adjacent controls. A small colored dot accompanies a text state rather than serving as the only status.
 
 State copy includes Not recording, Preparing capture…, Recording, Saving clip… and Capture needs attention. The buffer line distinguishes Replay buffer off, buffered seconds versus capacity, writing, saved feedback and error recovery. Save stays disabled until the recorder reports replay readiness and while saving. The record button disables during capture transitions. A hotkey conflict removes F8 from the widget's button label and supplies button/tray recovery.
 
 Showing the widget requests no activation (`ShowActivated=false` and `WS_EX_NOACTIVATE`), with a tool-window style and no taskbar entry. Capture exclusion is requested with `SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE)`; the returned result is retained, so exclusion remains a Windows/runtime capability rather than a universal promise. The explicit Open library action opens the main app.
 
 Collapse changes height over (150ms) with cubic ease-out when Windows client-area animation is enabled; otherwise it changes immediately. Expanded content is hidden/revealed as part of the toggle rather than animated item by item. The collapsed header retains state and elapsed time. Closing hides the widget; the main Widget action and tray can restore it.
+
+### Game detection and Games manager
+
+Game context is ordinary text rather than a badge, launcher tile or health score. The main capture panel exposes a named, polite detected-game status. It distinguishes “Looking for running games…”, “No game detected · open a game or add its executable in Games.” and a recognized name with a running-in-background suffix when applicable. The widget uses a shorter “Looking for games…”/“No game detected” line and marks recognized background games with “· background”. A foreground recognized game takes priority; a still-running selection can remain selected when focus moves to FunClipper.
+
+The Games manager separates Running games from Your added games. Running rows show the game name and smaller focus/background, source and executable-filename details. Added rows show the custom name and filename, with the full path in a tooltip and a neutral Remove action at the right. Names/details use ellipsis, while empty instructions wrap. Rows use (12 horizontal / 9 vertical) padding, the existing native selection fill and a (1-unit) violet keyboard-focus border.
+
+“Game name (optional)” labels a named, minimum-height (36) text field. “Add game executable…” opens the native existing-.exe picker; a blank name uses the executable name. Refresh requests a local library-catalog refresh. Add and Refresh disable during an update, operations serialize, and a polite status footer shows updating, completion or error text. Empty lists explain that a game must run to be detected or that its executable can be added. Remove unregisters the custom entry and explicitly leaves game files in place.
+
+Detection runs locally on a worker with a (2.5-second) scan interval and cached installed Steam/Epic catalogs refreshed about every (5 minutes), plus a small known-executable fallback and custom registrations. This interval is distinct from the vitals sampler. Do not imply instant or universal recognition: local classification supplies context, and custom registration is the recovery for unrecognized executables. Process-path classification may miss protected games or match an unlisted auxiliary executable; registering a generic runtime identifies that executable rather than its command line. Registration changes can take one scan interval to appear. The UI has no claim of automatic capture, game-only capture or measured game FPS. Capture still records screen 1 only after Start capture; saved game metadata describes context rather than proving which pixels were recorded.
 
 ### Real readings, status and copy recovery
 
@@ -349,6 +400,7 @@ No shipping raster artwork is required or identified. The tray uses Windows `Sys
 - **Do** keep recording state, elapsed time, real readings and capture/save actions grouped compactly in the widget.
 - **Do** preserve opaque widget text/controls, supported background opacity presets and visible keyboard focus.
 - **Do** show actual buffer readiness, missing telemetry and selectable clipboard recovery in plain language.
+- **Do** present detected-game context, foreground/background state and custom-executable recovery without changing opt-in desktop capture.
 - **Do** preserve native window behavior and adapt reference ideas through local WPF, CSS and vector code.
 
 ### Don't:
@@ -358,3 +410,4 @@ No shipping raster artwork is required or identified. The tray uses Windows `Sys
 - **Don't** add a social feed, chat, decorative metric-card dashboard or promotional hero to this clip utility.
 - **Don't** substitute synthetic metrics or treat profile FPS, busiest-engine GPU use or test footage as gameplay-performance evidence.
 - **Don't** imply that game FPS/temperatures, low-end compatibility or public hosting are established by this local prototype.
+- **Don't** present detection as automatic recording, game-only capture, universal game recognition or proof of captured content.

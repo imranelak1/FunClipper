@@ -47,3 +47,7 @@ Official Medal/REA/AMD documentation in the conversation, local tool availabilit
 ## October 15 update
 
 The user requests a visual improvement drawing on Vengeance UI, Animmaster and Skiper UI, plus a floating semi-transparent corner widget for PC vitals and recording. The recorder must be validated with real replay saves because the first prototype did not clip successfully. Adapt component and interaction patterns natively; preserve the small runtime and avoid embedding a browser in the desktop app. The widget must show true capture/buffer state, keep the game focused, and expose direct capture/save actions.
+
+## Game detection
+
+Detect running games locally without injection, elevation or a network service. Use installed Steam/Epic metadata, a conservative known-executable fallback and custom game registrations. Prefer the foreground game and retain a running selection across app/widget focus changes. Show the game in the capture panel and widget, expose a compact Games manager, and retain a descriptive game label when clips are saved or trimmed. Recording remains an explicit action and captures screen 1; detection does not establish game-only capture or game FPS. Keep polling and caches bounded for modest PCs.
