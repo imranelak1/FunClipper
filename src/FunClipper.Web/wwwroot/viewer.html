@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Watch a FunClipper clip.">
+  <title>Watch clip · FunClipper</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to video</a>
+  <header class="app-header">
+    <a class="brand" href="/"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#clips"></use></svg>FunClipper</a>
+    <span id="scope-label" class="scope-label">Local preview</span>
+    <a class="library-link" href="/"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#back"></use></svg>Clip library</a>
+  </header>
+  <main id="main" class="viewer">
+    <p id="local-notice" class="notice">This is a local preview. The link works on this PC while FunClipper's clip service is running.</p>
+    <p id="message" class="message" role="status" aria-live="polite">Loading clip…</p>
+    <section id="clip" hidden aria-labelledby="clip-title">
+      <video id="video" controls playsinline preload="metadata" aria-label="Clip video"></video>
+      <div class="viewer-details">
+        <div>
+          <h1 id="clip-title"></h1>
+          <p id="clip-meta" class="clip-meta"></p>
+        </div>
+        <div class="actions">
+          <button id="copy-link" class="primary" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#copy"></use></svg>Copy link</button>
+          <a id="download" class="button" download="clip.mp4"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#download"></use></svg>Download MP4</a>
+        </div>
+      </div>
+      <p id="expiry" class="expiry"></p>
+    </section>
+    <div id="copy-fallback" class="copy-fallback" hidden>
+      <label for="copy-url">Copy this clip link</label>
+      <input id="copy-url" type="text" readonly>
+      <p class="field-help">Select the link and copy it using your browser or keyboard.</p>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T00:54:39Z",
+  "title": "Design System: FunClipper",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Charcoal Canvas",
+        "tonalRamp": [
+          "oklch(15% 0.01068 268.11)",
+          "oklch(26.43% 0.01068 268.11)",
+          "oklch(37.86% 0.01068 268.11)",
+          "oklch(49.29% 0.01068 268.11)",
+          "oklch(60.71% 0.01068 268.11)",
+          "oklch(72.14% 0.01068 268.11)",
+          "oklch(83.57% 0.01068 268.11)",
+          "oklch(95% 0.01068 268.11)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Charcoal Surface",
+        "tonalRamp": [
+          "oklch(15% 0.01437 266.94)",
+          "oklch(26.43% 0.01437 266.94)",
+          "oklch(37.86% 0.01437 266.94)",
+          "oklch(49.29% 0.01437 266.94)",
+          "oklch(60.71% 0.01437 266.94)",
+          "oklch(72.14% 0.01437 266.94)",
+          "oklch(83.57% 0.01437 266.94)",
+          "oklch(95% 0.01437 266.94)"
+        ]
+      },
+      "elevated": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "tonalRamp": [
+          "oklch(15% 0.01955 267.95)",
+          "oklch(26.43% 0.01955 267.95)",
+          "oklch(37.86% 0.01955 267.95)",
+          "oklch(49.29% 0.01955 267.95)",
+          "oklch(60.71% 0.01955 267.95)",
+          "oklch(72.14% 0.01955 267.95)",
+          "oklch(83.57% 0.01955 267.95)",
+          "oklch(95% 0.01955 267.95)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Soft White Ink",
+        "tonalRamp": [
+          "oklch(15% 0.00543 274.97)",
+          "oklch(26.43% 0.00543 274.97)",
+          "oklch(37.86% 0.00543 274.97)",
+          "oklch(49.29% 0.00543 274.97)",
+          "oklch(60.71% 0.00543 274.97)",
+          "oklch(72.14% 0.00543 274.97)",
+          "oklch(83.57% 0.00543 274.97)",
+          "oklch(95% 0.00543 274.97)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Cool Secondary Ink",
+        "tonalRamp": [
+          "oklch(15% 0.02429 266.85)",
+          "oklch(26.43% 0.02429 266.85)",
+          "oklch(37.86% 0.02429 266.85)",
+          "oklch(49.29% 0.02429 266.85)",
+          "oklch(60.71% 0.02429 266.85)",
+          "oklch(72.14% 0.02429 266.85)",
+          "oklch(83.57% 0.02429 266.85)",
+          "oklch(95% 0.02429 266.85)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Panel Line",
+        "tonalRamp": [
+          "oklch(15% 0.02378 268.59)",
+          "oklch(26.43% 0.02378 268.59)",
+          "oklch(37.86% 0.02378 268.59)",
+          "oklch(49.29% 0.02378 268.59)",
+          "oklch(60.71% 0.02378 268.59)",
+          "oklch(72.14% 0.02378 268.59)",
+          "oklch(83.57% 0.02378 268.59)",
+          "oklch(95% 0.02378 268.59)"
+        ]
+      },
+      "control-border": {
+        "role": "neutral",
+        "displayName": "Control Line",
+        "tonalRamp": [
+          "oklch(15% 0.03192 265.24)",
+          "oklch(26.43% 0.03192 265.24)",
+          "oklch(37.86% 0.03192 265.24)",
+          "oklch(49.29% 0.03192 265.24)",
+          "oklch(60.71% 0.03192 265.24)",
+          "oklch(72.14% 0.03192 265.24)",
+          "oklch(83.57% 0.03192 265.24)",
+          "oklch(95% 0.03192 265.24)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Pale Action Violet",
+        "tonalRamp": [
+          "oklch(15% 0.13356 293.75)",
+          "oklch(26.43% 0.13356 293.75)",
+          "oklch(37.86% 0.13356 293.75)",
+          "oklch(49.29% 0.13356 293.75)",
+          "oklch(60.71% 0.13356 293.75)",
+          "oklch(72.14% 0.13356 293.75)",
+          "oklch(83.57% 0.13356 293.75)",
+          "oklch(95% 0.13356 293.75)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Light Action Violet",
+        "tonalRamp": [
+          "oklch(15% 0.09975 294.44)",
+          "oklch(26.43% 0.09975 294.44)",
+          "oklch(37.86% 0.09975 294.44)",
+          "oklch(49.29% 0.09975 294.44)",
+          "oklch(60.71% 0.09975 294.44)",
+          "oklch(72.14% 0.09975 294.44)",
+          "oklch(83.57% 0.09975 294.44)",
+          "oklch(95% 0.09975 294.44)"
+        ]
+      },
+      "accent-active": {
+        "role": "primary",
+        "displayName": "Pressed Violet",
+        "tonalRamp": [
+          "oklch(15% 0.13520 295.56)",
+          "oklch(26.43% 0.13520 295.56)",
+          "oklch(37.86% 0.13520 295.56)",
+          "oklch(49.29% 0.13520 295.56)",
+          "oklch(60.71% 0.13520 295.56)",
+          "oklch(72.14% 0.13520 295.56)",
+          "oklch(83.57% 0.13520 295.56)",
+          "oklch(95% 0.13520 295.56)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Deep Violet Ink",
+        "tonalRamp": [
+          "oklch(15% 0.05757 294.84)",
+          "oklch(26.43% 0.05757 294.84)",
+          "oklch(37.86% 0.05757 294.84)",
+          "oklch(49.29% 0.05757 294.84)",
+          "oklch(60.71% 0.05757 294.84)",
+          "oklch(72.14% 0.05757 294.84)",
+          "oklch(83.57% 0.05757 294.84)",
+          "oklch(95% 0.05757 294.84)"
+        ]
+      },
+      "record-error": {
+        "role": "error",
+        "displayName": "Recording/Error Rose",
+        "tonalRamp": [
+          "oklch(15% 0.16898 13.43)",
+          "oklch(26.43% 0.16898 13.43)",
+          "oklch(37.86% 0.16898 13.43)",
+          "oklch(49.29% 0.16898 13.43)",
+          "oklch(60.71% 0.16898 13.43)",
+          "oklch(72.14% 0.16898 13.43)",
+          "oklch(83.57% 0.16898 13.43)",
+          "oklch(95% 0.16898 13.43)"
+        ]
+      },
+      "preparing": {
+        "role": "warning",
+        "displayName": "Preparing Amber",
+        "tonalRamp": [
+          "oklch(15% 0.16442 84.43)",
+          "oklch(26.43% 0.16442 84.43)",
+          "oklch(37.86% 0.16442 84.43)",
+          "oklch(49.29% 0.16442 84.43)",
+          "oklch(60.71% 0.16442 84.43)",
+          "oklch(72.14% 0.16442 84.43)",
+          "oklch(83.57% 0.16442 84.43)",
+          "oklch(95% 0.16442 84.43)"
+        ]
+      },
+      "idle": {
+        "role": "neutral",
+        "displayName": "Idle Gray",
+        "tonalRamp": [
+          "oklch(15% 0.02873 264.36)",
+          "oklch(26.43% 0.02873 264.36)",
+          "oklch(37.86% 0.02873 264.36)",
+          "oklch(49.29% 0.02873 264.36)",
+          "oklch(60.71% 0.02873 264.36)",
+          "oklch(72.14% 0.02873 264.36)",
+          "oklch(83.57% 0.02873 264.36)",
+          "oklch(95% 0.02873 264.36)"
+        ]
+      },
+      "control-hover": {
+        "role": "neutral",
+        "displayName": "Hovered Control",
+        "tonalRamp": [
+          "oklch(15% 0.02267 267.31)",
+          "oklch(26.43% 0.02267 267.31)",
+          "oklch(37.86% 0.02267 267.31)",
+          "oklch(49.29% 0.02267 267.31)",
+          "oklch(60.71% 0.02267 267.31)",
+          "oklch(72.14% 0.02267 267.31)",
+          "oklch(83.57% 0.02267 267.31)",
+          "oklch(95% 0.02267 267.31)"
+        ]
+      },
+      "control-hover-border": {
+        "role": "neutral",
+        "displayName": "Hovered Control Line",
+        "tonalRamp": [
+          "oklch(15% 0.03398 265.18)",
+          "oklch(26.43% 0.03398 265.18)",
+          "oklch(37.86% 0.03398 265.18)",
+          "oklch(49.29% 0.03398 265.18)",
+          "oklch(60.71% 0.03398 265.18)",
+          "oklch(72.14% 0.03398 265.18)",
+          "oklch(83.57% 0.03398 265.18)",
+          "oklch(95% 0.03398 265.18)"
+        ]
+      },
+      "native-field": {
+        "role": "neutral",
+        "displayName": "Native Field",
+        "tonalRamp": [
+          "oklch(15% 0.01273 264.26)",
+          "oklch(26.43% 0.01273 264.26)",
+          "oklch(37.86% 0.01273 264.26)",
+          "oklch(49.29% 0.01273 264.26)",
+          "oklch(60.71% 0.01273 264.26)",
+          "oklch(72.14% 0.01273 264.26)",
+          "oklch(83.57% 0.01273 264.26)",
+          "oklch(95% 0.01273 264.26)"
+        ]
+      },
+      "native-player": {
+        "role": "neutral",
+        "displayName": "Native Player Black",
+        "tonalRamp": [
+          "oklch(15% 0.00930 263.97)",
+          "oklch(26.43% 0.00930 263.97)",
+          "oklch(37.86% 0.00930 263.97)",
+          "oklch(49.29% 0.00930 263.97)",
+          "oklch(60.71% 0.00930 263.97)",
+          "oklch(72.14% 0.00930 263.97)",
+          "oklch(83.57% 0.00930 263.97)",
+          "oklch(95% 0.00930 263.97)"
+        ]
+      },
+      "web-player": {
+        "role": "neutral",
+        "displayName": "Web Player Black",
+        "tonalRamp": [
+          "oklch(15% 0.00673 270.47)",
+          "oklch(26.43% 0.00673 270.47)",
+          "oklch(37.86% 0.00673 270.47)",
+          "oklch(49.29% 0.00673 270.47)",
+          "oklch(60.71% 0.00673 270.47)",
+          "oklch(72.14% 0.00673 270.47)",
+          "oklch(83.57% 0.00673 270.47)",
+          "oklch(95% 0.00673 270.47)"
+        ]
+      },
+      "overlay-border": {
+        "role": "neutral",
+        "displayName": "Widget Edge",
+        "tonalRamp": [
+          "oklch(15% 0.03089 266.31 / 0.396078)",
+          "oklch(26.43% 0.03089 266.31 / 0.396078)",
+          "oklch(37.86% 0.03089 266.31 / 0.396078)",
+          "oklch(49.29% 0.03089 266.31 / 0.396078)",
+          "oklch(60.71% 0.03089 266.31 / 0.396078)",
+          "oklch(72.14% 0.03089 266.31 / 0.396078)",
+          "oklch(83.57% 0.03089 266.31 / 0.396078)",
+          "oklch(95% 0.03089 266.31 / 0.396078)"
+        ]
+      },
+      "overlay-background": {
+        "role": "neutral",
+        "displayName": "Widget Background",
+        "tonalRamp": [
+          "oklch(15% 0.01437 266.94 / 0.847059)",
+          "oklch(26.43% 0.01437 266.94 / 0.847059)",
+          "oklch(37.86% 0.01437 266.94 / 0.847059)",
+          "oklch(49.29% 0.01437 266.94 / 0.847059)",
+          "oklch(60.71% 0.01437 266.94 / 0.847059)",
+          "oklch(72.14% 0.01437 266.94 / 0.847059)",
+          "oklch(83.57% 0.01437 266.94 / 0.847059)",
+          "oklch(95% 0.01437 266.94 / 0.847059)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "native-display": {
+        "displayName": "Native Display",
+        "purpose": "Main FunClipper title."
+      },
+      "native-title": {
+        "displayName": "Native Title",
+        "purpose": "Editor title; connection keeps its source-local 21-unit variation."
+      },
+      "native-section": {
+        "displayName": "Native Section",
+        "purpose": "Recent clips and native empty-state headings."
+      },
+      "native-body": {
+        "displayName": "Native Body",
+        "purpose": "Ordinary Windows labels and button text."
+      },
+      "native-label": {
+        "displayName": "Native Label",
+        "purpose": "Native status and metadata; widget state and action text."
+      },
+      "native-measurement": {
+        "displayName": "Native Measurement",
+        "purpose": "Main vitals, trim timestamps and the widget elapsed timer."
+      },
+      "widget-reading": {
+        "displayName": "Widget Reading",
+        "purpose": "CPU/GPU widget values; RAM uses its source-local 15-unit variation."
+      },
+      "widget-label": {
+        "displayName": "Widget Label",
+        "purpose": "CPU/GPU/RAM captions and optional dedicated GPU-memory text."
+      },
+      "widget-buffer": {
+        "displayName": "Widget Buffer",
+        "purpose": "Replay readiness, progress and saved/error feedback."
+      },
+      "web-title": {
+        "displayName": "Web Title",
+        "purpose": "Browser page and clip titles; 1.375rem at 640px and below."
+      },
+      "web-section": {
+        "displayName": "Web Section",
+        "purpose": "Connection, upload and empty-state headings."
+      },
+      "web-brand": {
+        "displayName": "Web Brand",
+        "purpose": "Brand link alongside the local vector mark."
+      },
+      "web-body": {
+        "displayName": "Web Body",
+        "purpose": "Browser root scale and form inputs."
+      },
+      "web-button": {
+        "displayName": "Web Button",
+        "purpose": "Compact browser actions; primary actions additionally use weight 600."
+      },
+      "web-label": {
+        "displayName": "Web Label",
+        "purpose": "Semibold field labels."
+      },
+      "web-meta": {
+        "displayName": "Web Meta",
+        "purpose": "Dates, sizes, counts, scope and help; numerical metadata uses tabular numerals."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "web-state-transition",
+        "value": "background-color 140ms ease, border-color 140ms ease, color 140ms ease",
+        "purpose": "Current browser button state transitions; links use color 140ms ease."
+      },
+      {
+        "name": "widget-collapse",
+        "value": "150ms CubicEase EaseOut",
+        "purpose": "WPF window-height change between 178 and 54 when Windows client-area animation is enabled; otherwise immediate."
+      },
+      {
+        "name": "web-reduced-motion",
+        "value": "none",
+        "purpose": "At prefers-reduced-motion: reduce, transitions and animations are disabled and scroll behavior is auto."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "row-wrap",
+        "value": "800px"
+      },
+      {
+        "name": "mobile",
+        "value": "640px"
+      },
+      {
+        "name": "narrow-header",
+        "value": "420px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Native primary button",
+      "kind": "button",
+      "refersTo": "native-button-primary",
+      "description": "HTML/CSS representation of the current WPF primary template; the Windows app uses local XAML.",
+      "html": "<button class=\"ds-native-primary\" type=\"button\">Start capture</button>",
+      "css": ".ds-native-primary { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 14px; margin: 0 8px 0 0; border: 1px solid #b7a1ff; border-radius: 7px; color: #1b1230; background: #b7a1ff; font-family: Bahnschrift, sans-serif; font-size: 14px; cursor: pointer; } .ds-native-primary:hover { opacity: 0.9; } .ds-native-primary:active { opacity: 0.74; } .ds-native-primary:focus-visible { outline: none; border-color: #b7a1ff; border-width: 2px; } .ds-native-primary:disabled { opacity: 0.45; }"
+    },
+    {
+      "name": "Native standard button",
+      "kind": "button",
+      "refersTo": "native-button-standard",
+      "description": "Native raised-charcoal action with immediate opacity, pressed and keyboard-focus states.",
+      "html": "<button class=\"ds-native-standard\" type=\"button\">Save edit</button>",
+      "css": ".ds-native-standard { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 14px; margin: 0 8px 0 0; border: 1px solid #343946; border-radius: 7px; color: #f3f4f8; background: #222630; font-family: Bahnschrift, sans-serif; font-size: 14px; cursor: pointer; } .ds-native-standard:hover { opacity: 0.9; } .ds-native-standard:active { opacity: 0.74; } .ds-native-standard:focus-visible { outline: none; border-color: #b7a1ff; border-width: 2px; } .ds-native-standard:disabled { opacity: 0.45; }"
+    },
+    {
+      "name": "Web primary button",
+      "kind": "button",
+      "refersTo": "web-button-primary",
+      "description": "Pale-violet browser action with deep-violet semibold ink and local inline vector icon.",
+      "html": "<button class=\"ds-web-primary\" type=\"button\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 16V3m-5 5 5-5 5 5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4\"/></svg>Upload clip</button>",
+      "css": ".ds-icon { box-sizing: border-box; display: block; width: 17px; height: 17px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }.ds-web-primary { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-web-primary:hover { background: #2c313d; border-color: #7a8499; } .ds-web-primary:active { background: var(--surface, #191c23); } .ds-web-primary:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-web-primary:disabled { opacity: 0.55; cursor: default; } .ds-web-primary { background: var(--accent, #b7a1ff); border-color: var(--accent, #b7a1ff); color: var(--accent-ink, #1b1230); font-weight: 600; } .ds-web-primary:hover { background: var(--accent-hover, #c8b8ff); border-color: var(--accent-hover, #c8b8ff); } .ds-web-primary:active { background: var(--accent-active, #a58be8); border-color: var(--accent-active, #a58be8); } @media (max-width: 640px) { .ds-web-primary { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-web-primary { transition: none !important; animation: none !important; } }"
+    },
+    {
+      "name": "Web standard button",
+      "kind": "button",
+      "refersTo": "web-button-standard",
+      "description": "Compact raised secondary action, with stronger control border and 44px mobile target.",
+      "html": "<button class=\"ds-web-standard\" type=\"button\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 11a8 8 0 1 0-2 6M20 4v7h-7\"/></svg>Refresh</button>",
+      "css": ".ds-icon { box-sizing: border-box; display: block; width: 17px; height: 17px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }.ds-web-standard { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-web-standard:hover { background: #2c313d; border-color: #7a8499; } .ds-web-standard:active { background: var(--surface, #191c23); } .ds-web-standard:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-web-standard:disabled { opacity: 0.55; cursor: default; } @media (max-width: 640px) { .ds-web-standard { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-web-standard { transition: none !important; animation: none !important; } }"
+    },
+    {
+      "name": "Web text button",
+      "kind": "button",
+      "refersTo": "web-button-text",
+      "description": "Muted Disconnect library action, preserving its header-specific responsive placement.",
+      "html": "<button class=\"ds-web-text\" type=\"button\">Disconnect library</button>",
+      "css": ".ds-web-text { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-web-text:hover { background: #2c313d; border-color: #7a8499; } .ds-web-text:active { background: var(--surface, #191c23); } .ds-web-text:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-web-text:disabled { opacity: 0.55; cursor: default; } .ds-web-text { background: transparent; border-color: transparent; color: var(--muted, #a6adbd); } .ds-web-text:hover { background: var(--elevated, #222630); color: var(--text, #f3f4f8);  } @media (max-width: 640px) { .ds-web-text { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-web-text { transition: none !important; animation: none !important; } } @media (max-width: 640px) { .ds-web-text { box-sizing: border-box; padding: 4px 8px; min-height: 40px; } } @media (max-width: 420px) { .ds-web-text { flex-basis: 100%; justify-content: flex-start; padding-left: 0; margin-top: -8px; } }"
+    },
+    {
+      "name": "Web delete button",
+      "kind": "button",
+      "refersTo": "web-button-delete",
+      "description": "Rose destructive action retaining its text color on hover; the source asks for browser confirmation before deleting.",
+      "html": "<button class=\"ds-web-delete\" type=\"button\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h18M9 6V3h6v3M5 6l1 14h12l1-14M10 10v6m4-6v6\"/></svg>Delete</button>",
+      "css": ".ds-icon { box-sizing: border-box; display: block; width: 17px; height: 17px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }.ds-web-delete { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-web-delete:hover { background: #2c313d; border-color: #7a8499; } .ds-web-delete:active { background: var(--surface, #191c23); } .ds-web-delete:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-web-delete:disabled { opacity: 0.55; cursor: default; } .ds-web-delete { background: transparent; border-color: transparent; color: var(--error, #fb7185); } .ds-web-delete:hover { background: var(--elevated, #222630); color: var(--error, #fb7185); border-color: var(--border, #343946); } @media (max-width: 640px) { .ds-web-delete { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-web-delete { transition: none !important; animation: none !important; } }"
+    },
+    {
+      "name": "Web text field",
+      "kind": "input",
+      "refersTo": "web-field",
+      "description": "Dark labeled field with explicit optionality, readable control stroke and keyboard focus.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-clip-title\">Title <span class=\"ds-field-optional\">(optional)</span></label><input class=\"ds-field-input\" id=\"ds-clip-title\" type=\"text\" maxlength=\"140\" placeholder=\"Gameplay clip\"></div>",
+      "css": ".ds-field { box-sizing: border-box; font-family: Bahnschrift, sans-serif; font-size: 16px; line-height: 1.5; color: var(--text, #f3f4f8); } .ds-field-label { display: block; font-size: 0.875rem; margin-bottom: 6px; font-weight: 600; } .ds-field-optional { color: var(--muted, #a6adbd); font-weight: 400; } .ds-field-input { box-sizing: border-box; width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--background, #111318); caret-color: var(--accent, #b7a1ff); font: inherit; } .ds-field-input::placeholder { color: var(--muted, #a6adbd); opacity: 1; } .ds-field-input:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-field-input::selection { background: var(--accent, #b7a1ff); color: var(--accent-ink, #1b1230); }"
+    },
+    {
+      "name": "Web navigation",
+      "kind": "nav",
+      "refersTo": "web-navigation",
+      "description": "Charcoal header with original local vector mark, local scope divider and library recovery link.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"/\"><svg class=\"ds-icon ds-nav-mark\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M8 3H4a1 1 0 0 0-1 1v4m13 13h4a1 1 0 0 0 1-1v-4M3 16v4a1 1 0 0 0 1 1h4M16 3h4a1 1 0 0 1 1 1v4\"/><path d=\"m10 8 6 4-6 4Z\"/></svg>FunClipper</a><span class=\"ds-nav-scope\">Local preview</span><a class=\"ds-nav-library\" href=\"/\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m10 5-7 7 7 7M3 12h18\"/></svg>Clip library</a></header>",
+      "css": ".ds-icon { box-sizing: border-box; display: block; width: 17px; height: 17px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }.ds-nav { box-sizing: border-box; min-height: 64px; display: flex; align-items: center; gap: 20px; padding: 10px 28px; border-bottom: 1px solid var(--border, #343946); background: var(--surface, #191c23); color: var(--text, #f3f4f8); font-family: Bahnschrift, sans-serif; font-size: 16px; line-height: 1.5; } .ds-nav-brand { box-sizing: border-box; display: inline-flex; align-items: center; gap: 9px; min-height: 40px; color: var(--text, #f3f4f8); font-size: 1.125rem; font-weight: 600; text-decoration: none; } .ds-nav-mark { box-sizing: border-box; width: 22px; height: 22px; color: var(--accent, #b7a1ff); } .ds-nav-brand:hover { color: var(--text, #f3f4f8); } .ds-nav-scope { font-size: 0.8125rem; color: var(--muted, #a6adbd); padding-left: 20px; border-left: 1px solid var(--border, #343946); } .ds-nav-library { box-sizing: border-box; display: inline-flex; align-items: center; gap: 7px; min-height: 40px; margin-left: auto; font-size: 0.875rem; color: var(--muted, #a6adbd); text-decoration: none; transition: color 140ms ease; } .ds-nav-library:hover { color: var(--text, #f3f4f8); } .ds-nav-brand:focus-visible, .ds-nav-library:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } @media (max-width: 640px) { .ds-nav { padding: 10px 16px; gap: 12px; flex-wrap: wrap; } .ds-nav-scope { padding-left: 12px; } } @media (prefers-reduced-motion: reduce) { .ds-nav-library { transition: none !important; } }"
+    },
+    {
+      "name": "Web upload container",
+      "kind": "card",
+      "refersTo": "web-upload-panel",
+      "description": "Functional charcoal upload surface, with no shadow, hover movement or independent focus state.",
+      "html": "<section class=\"ds-upload\" aria-labelledby=\"ds-upload-heading\"><h2 class=\"ds-upload-heading\" id=\"ds-upload-heading\">Upload a finished clip</h2></section>",
+      "css": ".ds-upload { box-sizing: border-box; background: var(--surface, #191c23); border: 1px solid var(--border, #343946); border-radius: 8px; padding: 20px; margin-bottom: 24px; color: var(--text, #f3f4f8); font-family: Bahnschrift, sans-serif; font-size: 16px; line-height: 1.5; } .ds-upload-heading { box-sizing: border-box; margin: 0; font-size: 1.0625rem; line-height: 1.4; font-weight: 600; } @media (max-width: 640px) { .ds-upload { padding: 16px; } }"
+    },
+    {
+      "name": "Web clip row",
+      "kind": "custom",
+      "refersTo": "web-clip-row",
+      "description": "Implemented frame-fallback state with inline local vector icon. Text comes from the v2 synthetic review clip, not a product default.",
+      "html": "<div class=\"ds-clip-row\"><a class=\"ds-clip-preview\" href=\"#\" aria-label=\"Watch Synthetic test clip (2 seconds)\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m10 9 5 3-5 3Z\"/></svg></a><div class=\"ds-clip-info\"><a class=\"ds-clip-title\" href=\"#\">Synthetic test clip (2 seconds)</a><p class=\"ds-clip-meta\">Oct 15, 2026 · 0.2 MB · Expires Oct 29, 2026</p></div><div class=\"ds-clip-actions\"><a class=\"ds-clip-watch\" href=\"#\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m8 5 11 7-11 7Z\"/></svg>Watch</a><button class=\"ds-clip-copy\" type=\"button\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"8\" y=\"8\" width=\"12\" height=\"13\" rx=\"2\"/><path d=\"M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3\"/></svg>Copy link</button><button class=\"ds-clip-delete\" type=\"button\"><svg class=\"ds-icon \" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 6h18M9 6V3h6v3M5 6l1 14h12l1-14M10 10v6m4-6v6\"/></svg>Delete</button></div></div>",
+      "css": ".ds-icon { box-sizing: border-box; display: block; width: 17px; height: 17px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }.ds-clip-row { box-sizing: border-box; display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border, #343946); color: var(--text, #f3f4f8); font-family: Bahnschrift, sans-serif; font-size: 16px; line-height: 1.5; } .ds-clip-preview { box-sizing: border-box; display: grid; place-items: center; width: 144px; aspect-ratio: 16 / 9; flex: 0 0 auto; overflow: hidden; border: 1px solid var(--border, #343946); border-radius: 5px; color: var(--muted, #a6adbd); background: var(--surface, #191c23); transition: color 140ms ease; } .ds-clip-preview > .ds-icon { box-sizing: border-box; width: 25px; height: 25px; } .ds-clip-preview:hover { border-color: var(--accent, #b7a1ff); color: var(--accent-hover, #c8b8ff); } .ds-clip-info { box-sizing: border-box; min-width: 0; flex: 1; } .ds-clip-title { color: var(--text, #f3f4f8); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; transition: color 140ms ease; } .ds-clip-title:hover { color: var(--accent, #b7a1ff); text-decoration: underline; } .ds-clip-title:focus-visible, .ds-clip-preview:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-clip-meta { color: var(--muted, #a6adbd); font-size: 0.8125rem; margin: 5px 0 0; font-variant-numeric: tabular-nums; } .ds-clip-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; } .ds-clip-watch { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-clip-watch:hover { background: #2c313d; border-color: #7a8499; } .ds-clip-watch:active { background: var(--surface, #191c23); } .ds-clip-watch:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-clip-watch:disabled { opacity: 0.55; cursor: default; } @media (max-width: 640px) { .ds-clip-watch { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-clip-watch { transition: none !important; animation: none !important; } }.ds-clip-copy { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-clip-copy:hover { background: #2c313d; border-color: #7a8499; } .ds-clip-copy:active { background: var(--surface, #191c23); } .ds-clip-copy:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-clip-copy:disabled { opacity: 0.55; cursor: default; } @media (max-width: 640px) { .ds-clip-copy { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-clip-copy { transition: none !important; animation: none !important; } }.ds-clip-delete { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--control-border, #626b7e); border-radius: 6px; color: var(--text, #f3f4f8); background: var(--elevated, #222630); cursor: pointer; text-decoration: none; white-space: nowrap; font-family: Bahnschrift, sans-serif; font-size: 0.875rem; line-height: 1.5; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; } .ds-clip-delete:hover { background: #2c313d; border-color: #7a8499; } .ds-clip-delete:active { background: var(--surface, #191c23); } .ds-clip-delete:focus-visible { outline: 2px solid var(--accent, #b7a1ff); outline-offset: 3px; } .ds-clip-delete:disabled { opacity: 0.55; cursor: default; } .ds-clip-delete { background: transparent; border-color: transparent; color: var(--error, #fb7185); } .ds-clip-delete:hover { background: var(--elevated, #222630); color: var(--error, #fb7185); border-color: var(--border, #343946); } @media (max-width: 640px) { .ds-clip-delete { box-sizing: border-box; min-height: 44px; } } @media (prefers-reduced-motion: reduce) { .ds-clip-delete { transition: none !important; animation: none !important; } } @media (max-width: 800px) { .ds-clip-row { flex-wrap: wrap; } .ds-clip-actions { margin-left: 160px; margin-top: -4px; } .ds-clip-info { flex-basis: calc(100% - 160px); } } @media (max-width: 640px) { .ds-clip-row { gap: 12px; } .ds-clip-preview { box-sizing: border-box; width: 112px; } .ds-clip-info { flex-basis: calc(100% - 124px); } .ds-clip-actions { box-sizing: border-box; width: 100%; margin: 0; gap: 6px; } .ds-clip-delete { margin-left: auto; } .ds-clip-meta { box-sizing: border-box; font-size: 0.75rem; line-height: 1.6; } } @media (prefers-reduced-motion: reduce) { .ds-clip-title, .ds-clip-preview { transition: none !important; } }"
+    },
+    {
+      "name": "Native floating recording widget",
+      "kind": "custom",
+      "refersTo": "floating-widget",
+      "description": "Visual HTML/CSS representation of the expanded native widget's initial state. Window activation, docking, capture exclusion and sampling are WPF/Win32 behavior, not supplied by this snippet. The data-collapsed state represents its 54-unit header view.",
+      "html": "<section class=\"ds-widget\" aria-label=\"FunClipper recording widget\"><div class=\"ds-widget-header\"><span class=\"ds-widget-dot\" aria-hidden=\"true\"></span><span class=\"ds-widget-state\">Not recording</span><span class=\"ds-widget-time\">00:00</span><button class=\"ds-widget-collapse\" type=\"button\" aria-label=\"Collapse or expand recording widget\" title=\"Collapse widget\"><svg class=\"ds-widget-collapse-icon\" viewBox=\"0 0 8 5\" aria-hidden=\"true\"><path d=\"M0 4 4 0 8 4\"/></svg></button><button class=\"ds-widget-open\" type=\"button\" aria-label=\"Open FunClipper\" title=\"Open clip library\"><svg class=\"ds-widget-open-icon\" viewBox=\"0 0 12 11\" aria-hidden=\"true\"><path d=\"M1 5v5h10V1H6M7 0h5v5M12 0 5 7\"/></svg></button></div><div class=\"ds-widget-expanded\"><div class=\"ds-widget-metrics\"><div><span class=\"ds-widget-label\">CPU</span><span class=\"ds-widget-value\">—</span></div><div><span class=\"ds-widget-label\">GPU</span><span class=\"ds-widget-value\">—</span></div><div><span class=\"ds-widget-label\">RAM</span><span class=\"ds-widget-ram\">—</span></div></div><div class=\"ds-widget-buffer\">Replay buffer off</div><div class=\"ds-widget-actions\"><button class=\"ds-widget-record\" type=\"button\">Start capture</button><button class=\"ds-widget-save\" type=\"button\" disabled>Save clip · F8</button></div></div></section>",
+      "css": ".ds-widget { box-sizing: border-box; width: 350px; height: 178px; padding: 12px 14px; border: 1px solid rgba(83,91,109,0.396078); border-radius: 12px; background: rgba(25,28,35,0.847059); color: #f3f4f8; font-family: Bahnschrift, sans-serif; font-size: 12px; } .ds-widget-header { box-sizing: border-box; display: grid; grid-template-columns: 12px 1fr auto auto auto; align-items: center; height: 28px; } .ds-widget-dot { box-sizing: border-box; width: 6px; height: 6px; border-radius: 50%; background: #8992a4; } .ds-widget-state { font-weight: 600; } .ds-widget-time { margin: 0 10px 0 8px; color: #c3c9d5; font-family: Cascadia Mono, monospace; font-size: 12px; } .ds-widget-expanded { margin-top: 10px; } .ds-widget-metrics { box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr 1.2fr; height: 44px; } .ds-widget-label { display: block; font-size: 10px; color: #a6adbd; } .ds-widget-value { display: block; margin-top: 3px; font-size: 18px; font-weight: 600; } .ds-widget-ram { display: block; margin-top: 5px; font-size: 15px; font-weight: 600; } .ds-widget-buffer { margin-top: 6px; color: #a6adbd; font-size: 11px; } .ds-widget-actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 10px; } .ds-widget-record { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 14px; margin: 0 8px 0 0; border: 1px solid #b7a1ff; border-radius: 7px; color: #1b1230; background: #b7a1ff; font-family: Bahnschrift, sans-serif; font-size: 14px; cursor: pointer; } .ds-widget-record:hover { opacity: 0.9; } .ds-widget-record:active { opacity: 0.74; } .ds-widget-record:focus-visible { outline: none; border-color: #b7a1ff; border-width: 2px; } .ds-widget-record:disabled { opacity: 0.45; }.ds-widget-save { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 14px; margin: 0 8px 0 0; border: 1px solid #343946; border-radius: 7px; color: #f3f4f8; background: #222630; font-family: Bahnschrift, sans-serif; font-size: 14px; cursor: pointer; } .ds-widget-save:hover { opacity: 0.9; } .ds-widget-save:active { opacity: 0.74; } .ds-widget-save:focus-visible { outline: none; border-color: #b7a1ff; border-width: 2px; } .ds-widget-save:disabled { opacity: 0.45; }.ds-widget-collapse { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 14px; margin: 0 8px 0 0; border: 1px solid #343946; border-radius: 7px; color: #f3f4f8; background: #222630; font-family: Bahnschrift, sans-serif; font-size: 14px; cursor: pointer; } .ds-widget-collapse:hover { opacity: 0.9; } .ds-widget-collapse:active { opacity: 0.74; } .ds-widget-collapse:focus-visible { outline: none; border-color: #b7a1ff; border-width: 2px; } .ds-widget-collapse:disabled { opacity: 0.45; }.ds-widget-open { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 14px; margin: 0 8px 0 0; border: 1px solid #343946; border-radius: 7px; color: #f3f4f8; background: #222630; font-family: Bahnschrift, sans-serif; font-size: 14px; cursor: pointer; } .ds-widget-open:hover { opacity: 0.9; } .ds-widget-open:active { opacity: 0.74; } .ds-widget-open:focus-visible { outline: none; border-color: #b7a1ff; border-width: 2px; } .ds-widget-open:disabled { opacity: 0.45; } .ds-widget-record, .ds-widget-save { box-sizing: border-box; min-height: 30px; padding: 5px 10px; font-size: 12px; } .ds-widget-save { margin: 0; } .ds-widget-collapse, .ds-widget-open { box-sizing: border-box; min-height: 24px; padding: 3px 6px; background: transparent; border-color: transparent; } .ds-widget-collapse { margin-right: 4px; } .ds-widget-open { margin: 0; } .ds-widget-collapse-icon { box-sizing: border-box; width: 8px; height: 5px; fill: none; stroke: #a6adbd; stroke-width: 1.5; } .ds-widget-open-icon { box-sizing: border-box; width: 12px; height: 11px; fill: none; stroke: #a6adbd; stroke-width: 1.3; } .ds-widget[data-collapsed='true'] { height: 54px; } .ds-widget[data-collapsed='true'] .ds-widget-expanded { display: none; } .ds-widget[data-collapsed='true'] .ds-widget-collapse-icon { transform: rotate(180deg); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The compact recording dock",
+    "overview": "FunClipper uses charcoal surfaces, pale violet actions, bright readable text and compact controls. Media and recent clips lead the main windows; the floating native widget groups recording state, real readings and immediate capture/save actions into a small corner surface. The web companion carries the same palette with plain HTML, CSS and SVG icons.\n\nThe requested references are adapted as original native and DOM patterns: Vengeance's glass dock informs the translucent shell and grouped actions; Skiper informs compact expansion and stable reading regions; Animmaster informs short local transitions. No library source was copied and no paid component code was used. The Windows app embeds no browser runtime for these patterns. The built widget uses alpha transparency without background blur.\n\nThis document records the October 15 source and reviewed native/v2 web captures. The [October 15 finish verdict](.impeccable/review/v2-verdict.md) clears the local UI, including the resolved opacity and hotkey findings. This remains a local prototype: public hosting, game FPS/temperature integrations, exclusive-fullscreen widget compatibility and gameplay or low-end performance guarantees are not established.",
+    "keyCharacteristics": [
+      "Charcoal layers, pale violet actions and clear neutral control strokes.",
+      "Compact grouped recording controls and stable-width reading regions.",
+      "A translucent corner widget with opaque text and controls.",
+      "Actual media, measured vitals and explicit loading, readiness and recovery states."
+    ],
+    "rules": [
+      {
+        "name": "The State Has Words Rule",
+        "body": "Color accompanies the widget's Recording, Preparing capture or attention label; it never replaces the state text. Measurements do not receive invented health or severity colors.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readable Overlay Rule",
+        "body": "Keep the widget's text and action contrast independent of the user's background. Preserve the supported opacity floor and explicit state labels.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use the implemented charcoal layers, pale violet actions and clear control strokes across native and web surfaces.",
+      "**Do** keep recording state, elapsed time, real readings and capture/save actions grouped compactly in the widget.",
+      "**Do** preserve opaque widget text/controls, supported background opacity presets and visible keyboard focus.",
+      "**Do** show actual buffer readiness, missing telemetry and selectable clipboard recovery in plain language.",
+      "**Do** preserve native window behavior and adapt reference ideas through local WPF, CSS and vector code."
+    ],
+    "donts": [
+      "**Don't** copy library source, introduce paid component code or embed a browser to reproduce these reference patterns.",
+      "**Don't** restore 65% widget opacity, fade the entire window or claim that alpha transparency includes background blur.",
+      "**Don't** add a social feed, chat, decorative metric-card dashboard or promotional hero to this clip utility.",
+      "**Don't** substitute synthetic metrics or treat profile FPS, busiest-engine GPU use or test footage as gameplay-performance evidence.",
+      "**Don't** imply that game FPS/temperatures, low-end compatibility or public hosting are established by this local prototype."
+    ]
+  }
+}

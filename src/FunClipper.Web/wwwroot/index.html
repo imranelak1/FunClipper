@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Your FunClipper shared clips.">
+  <title>Clip library · FunClipper</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/library.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to clips</a>
+  <header class="app-header">
+    <a class="brand" href="/"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#clips"></use></svg>FunClipper</a>
+    <span id="scope-label" class="scope-label">Local preview</span>
+    <button id="disconnect" class="text-button" type="button" hidden>Disconnect library</button>
+  </header>
+  <main id="main" class="library">
+    <div class="page-toolbar">
+      <h1>Clip library</h1>
+      <div id="library-actions" class="actions" hidden>
+        <button id="refresh" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#refresh"></use></svg>Refresh</button>
+        <button id="show-upload" class="primary" type="button" aria-expanded="false" aria-controls="upload-panel"><svg class="icon" aria-hidden="true" focusable="false"><use href="/icons.svg#upload"></use></svg>Upload clip</button>
+      </div>
+    </div>
+    <p id="local-notice" class="notice">Links work on this PC while the local service is running. Public sharing requires hosting.</p>
+    <p id="message" class="message" role="status" aria-live="polite" hidden></p>
+
+    <section id="connect-panel" class="connect-panel" aria-labelledby="connect-heading">
+      <h2 id="connect-heading">Connect your library</h2>
+      <p>Open Library from the desktop app to connect automatically, or enter your local access key.</p>
+      <form id="connect-form">
+        <label for="access-key">Local access key</label>
+        <div class="connect-controls">
+          <input id="access-key" name="access-key" type="password" required autocomplete="off" spellcheck="false" aria-describedby="key-help">
+          <button id="connect" class="primary" type="submit">Connect</button>
+        </div>
+        <p id="key-help" class="field-help">The key unlocks your library and uploads. It is never included in a clip link.</p>
+      </form>
+    </section>
+
+    <section id="upload-panel" class="upload-panel" aria-labelledby="upload-heading" hidden>
+      <h2 id="upload-heading">Upload a finished clip</h2>
+      <form id="upload-form">
+        <div class="upload-fields">
+          <div>
+            <label for="clip-file">MP4 video</label>
+            <input id="clip-file" type="file" accept="video/mp4,.mp4" required aria-describedby="file-help">
+            <p id="file-help" class="field-help">Up to 100 MB. Trim or mute in the desktop editor before uploading.</p>
+          </div>
+          <div>
+            <label for="clip-title">Title <span class="muted">(optional)</span></label>
+            <input id="clip-title" type="text" maxlength="140" placeholder="Gameplay clip">
+          </div>
+        </div>
+        <div class="actions upload-actions">
+          <button id="upload" class="primary" type="submit">Upload &amp; copy link</button>
+          <button id="cancel-upload" type="button">Cancel</button>
+          <span id="upload-status" role="status" aria-live="polite"></span>
+        </div>
+        <progress id="upload-progress" max="100" value="0" aria-label="Upload progress" hidden></progress>
+      </form>
+    </section>
+
+    <section id="clips-panel" aria-label="Shared clips" hidden>
+      <p id="list-status" class="list-status" role="status" aria-live="polite"></p>
+      <ul id="clip-list" class="clip-list"></ul>
+      <div id="empty-state" class="empty-state" hidden>
+        <h2>No shared clips yet</h2>
+        <p>Save and trim a clip in the desktop app, then choose Share. You can also upload an MP4 here.</p>
+        <button id="empty-upload" class="primary" type="button">Upload clip</button>
+      </div>
+    </section>
+    <div id="copy-fallback" class="copy-fallback" hidden>
+      <label for="copy-url">Copy this clip link</label>
+      <input id="copy-url" type="text" readonly>
+      <p class="field-help">Select the link and copy it using your browser or keyboard.</p>
+    </div>
+  </main>
+</body>
+</html>

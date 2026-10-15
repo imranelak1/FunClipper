@@ -1,0 +1,48 @@
+<Window x:Class="FunClipper.Desktop.EditorWindow" Style="{StaticResource {x:Type Window}}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit clip · FunClipper" Width="760" Height="690" MinWidth="600" MinHeight="560"
+        WindowStartupLocation="CenterScreen" Closed="Editor_Closed">
+  <Grid Margin="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <DockPanel Margin="0,0,0,16">
+      <TextBlock DockPanel.Dock="Right" x:Name="DurationLabel" Foreground="{StaticResource SecondaryInk}" VerticalAlignment="Center" />
+      <TextBlock Text="Edit clip" FontSize="22" FontWeight="SemiBold" />
+    </DockPanel>
+    <Border Grid.Row="1" Background="#090B0F" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="9" ClipToBounds="True">
+      <Grid>
+        <Image x:Name="Poster" Stretch="Uniform" />
+        <MediaElement x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Uniform" Visibility="Hidden" MediaFailed="Player_Failed" MediaEnded="Player_Ended" />
+      </Grid>
+    </Border>
+    <Grid Grid.Row="2" Margin="0,18,0,10">
+      <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+      <Grid.ColumnDefinitions><ColumnDefinition Width="56" /><ColumnDefinition Width="*" /><ColumnDefinition Width="76" /></Grid.ColumnDefinitions>
+      <TextBlock Text="Start" VerticalAlignment="Center" />
+      <Slider x:Name="InSlider" Grid.Column="1" Minimum="0" ValueChanged="Trim_Changed" AutomationProperties.Name="Clip start in seconds" SmallChange="0.1" LargeChange="1" />
+      <TextBlock x:Name="InLabel" Grid.Column="2" TextAlignment="Right" VerticalAlignment="Center" FontFamily="Cascadia Mono" FontSize="12" />
+      <TextBlock Grid.Row="1" Text="End" VerticalAlignment="Center" Margin="0,12,0,0" />
+      <Slider x:Name="OutSlider" Grid.Row="1" Grid.Column="1" Minimum="0" Margin="0,12,0,0" ValueChanged="Trim_Changed" AutomationProperties.Name="Clip end in seconds" SmallChange="0.1" LargeChange="1" />
+      <TextBlock x:Name="OutLabel" Grid.Row="1" Grid.Column="2" Margin="0,12,0,0" TextAlignment="Right" VerticalAlignment="Center" FontFamily="Cascadia Mono" FontSize="12" />
+    </Grid>
+    <DockPanel Grid.Row="3" Margin="0,8,0,12">
+      <CheckBox x:Name="MuteChoice" DockPanel.Dock="Right" Content="Mute audio" VerticalAlignment="Center" Checked="Mute_Changed" Unchecked="Mute_Changed" />
+      <StackPanel Orientation="Horizontal">
+        <Button x:Name="PlayButton" Content="Play selection" Click="Play_Click" />
+        <TextBlock x:Name="SelectionLabel" VerticalAlignment="Center" Foreground="{StaticResource SecondaryInk}" />
+      </StackPanel>
+    </DockPanel>
+    <TextBlock Grid.Row="4" x:Name="VitalsLabel" FontSize="12" Foreground="{StaticResource SecondaryInk}" TextWrapping="Wrap" Margin="0,0,0,14" />
+    <Grid Grid.Row="5">
+      <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button x:Name="SaveEditButton" Content="Save edit" Click="SaveEdit_Click" />
+        <Button x:Name="ShareButton" Content="Share and copy link" Style="{StaticResource Primary}" Click="Share_Click" Margin="0" />
+      </StackPanel>
+      <TextBox Grid.Row="1" x:Name="EditorStatus" IsReadOnly="True" BorderThickness="0" Background="Transparent" Padding="0" Text="Adjust start and end. Your original clip stays available." TextWrapping="Wrap" Margin="0,12,0,0" />
+    </Grid>
+  </Grid>
+</Window>
